@@ -1,0 +1,1 @@
+National Pokedex hecho en AngularJS

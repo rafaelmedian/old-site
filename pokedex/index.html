@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app>
+
+  <head>
+    <title>National Pokedex</title>
+    <meta charset="utf8" />
+    <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link data-require="bootstrap@*" data-semver="3.0.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script data-require="bootstrap@*" data-semver="3.0.0" src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+  <body ng-controller="NationalPokedexCtrl">
+    <div id="wrapper" class="container">
+      <header>
+        <h1>National Pokedex</h1>
+      </header>
+      
+      <section id="pokedex">
+        <article class="pokemon row" ng-repeat="pokemon in pokedex.pokemons">
+          <div class="perfil col-md-4">
+            <img ng-src="{{pokemon.imagen}}" alt="{{pokemon.nombre}}" />
+            
+            <div class="tipos">
+              <span class="badge tipo-{{tipo}}" ng-repeat="tipo in pokemon.tipos">
+                {{tipo[0]}}
+              </span>
+            </div>
+            <button class="btn btn-xs btn-danger" ng-click="pokedex.eliminar( pokemon );">Eliminar</button>
+          </div>
+          <div class="ficha col-md-8">
+              <h2>{{pokemon.nombre}}</h2>
+              <p>{{pokemon.descripcion}}</p>
+              <strong>ATT:</strong> {{pokemon.ataque}}
+              <strong>DEF:</strong> {{pokemon.defensa}}
+              <br />
+              <strong>SP:</strong> {{pokemon.ataqueSP}}
+              <strong>SPD:</strong> {{pokemon.defensaSP}}
+          </div>
+        </article>
+      </section>
+      
+      <form id="agregrar-pokemon">
+        <div class="input  input-group input-group-md">
+            <strong class="input-group-addon">Nombre:</strong>
+            <input class="form-control" type="text" ng-model="pokedex.nuevo.nombre" />
+        </div>
+        
+        <div class="input  input-group input-group-md">
+            <strong class="input-group-addon">Tipo:</strong>
+            <select class="form-control" ng-model="pokedex.tipoSeleccionado" ng-options="tipo for tipo in pokedex.tipos"></select>
+            <div class="input-group-btn">
+              <button class="btn btn-default" ng-click="pokedex.nuevo.agregarTipo( pokedex.tipoSeleccionado );">
+                <i class="glyphicon glyphicon-plus"></i>
+              </button>
+            </div>
+        </div>
+        
+        <div class="tipos">
+          <span class="tipo label label-primary tipo-{{tipo}}" ng-repeat="tipo in pokedex.nuevo.tipos">
+            {{tipo}}
+            <a class="glyphicon glyphicon-remove" href="#" ng-click="pokedex.nuevo.eliminarTipo( tipo )"></a>    
+          </span>
+        </div>
+        
+        <div class="input input-group input-group-md">
+          <strong class="input-group-addon">ATT:</strong>
+          <input class="form-control" ng-model="pokedex.nuevo.ataque" />
+          <strong class="input-group-addon">DEF:</strong>
+          <input class="form-control" ng-model="pokedex.nuevo.defensa"  />
+        </div>
+        
+        <div class="input input-group input-group-md">
+          <strong class="input-group-addon">SP:</strong>
+          <input class="form-control" ng-model="pokedex.nuevo.ataqueSP"  />
+          <strong class="input-group-addon">SPD:</strong>
+          <input class="form-control" ng-model="pokedex.nuevo.defensaSP"  />
+        </div>
+        
+        <div class="input">
+          <button class="btn btn-default" ng-click="pokedex.reiniciar()">Cancelar</button>
+          <button class="btn btn-primary" ng-click="pokedex.agregar( pokedex.nuevo );">Agregar</button>
+        </div>
+      </form>
+    </div>
+  </body>
+
+</html>
