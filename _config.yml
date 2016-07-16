@@ -1,0 +1,27 @@
+name: imrafael
+markdown: redcarpet
+highlighter: rouge # or pygments or null
+
+# ============================
+# Author
+# ============================
+name: Rafael Medina
+author:
+  name     : Rafael Medina
+  firstname: Rafael
+  lastname : Medina
+
+email       : hello@rafaelmedina.me
+social:
+  codepen      : ""
+  dribbble     : ""
+  facebook     : ""
+  flickr       : ""
+  github       : ""
+  google       : ""
+  linkedin     : ""
+  instagram    : ""
+  paypal       : ""
+  stackoverflow: ""
+  twitter      : ""
+  username     : zxhadow
